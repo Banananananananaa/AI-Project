@@ -1,10 +1,17 @@
 import abc
+import re
 
 class PreProcessor(metaclass=ABCMeta):
 
 	@abstractmethod
 	def preprocess(text):
-		pass
+		text = re.sub('@'+'\w+','', text)
+		text = re.sub('#'+'\w', '', text)
+		text = re.sub('http'+'\S+', '', text)
+		text = re.findall('\w+', text)
+		text = ' '.join(text)
+		text = unicode(text, "utf-8")
+		return text
 
 class POStagger(metaclass=ABCMeta):
 	

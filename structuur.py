@@ -1,18 +1,34 @@
 import abc
 import re
+import enchant
 
 class PreProcessor(metaclass=ABCMeta):
 
 	@abstractmethod
-	def preprocess(text):
-		text = re.sub('@'+'\w+','', text)
-		text = re.sub('#'+'\w', '', text)
-		text = re.sub('http'+'\S+', '', text)
+	def preprocess(text, translate):
+		language = ''
+		if translate == True:
+			text = enchant.Dict("en_US")
+			language = 'en'
+		else:
+			language = 'nl'
 		text = re.findall('\w+', text)
 		text = ' '.join(text)
 		text = unicode(text, "utf-8")
+		return tuple(language, text)
+		
+	def atremoval(text):
+		text = re.sub('@'+'\w+','', text)
 		return text
 
+	def hastagremoval(text):
+		text = re.sub('#'+'\w+','', text)
+		return text	
+		
+	def linkremoval(text):
+		text = re.sub('http'+'\S+', '', text)
+		return text
+		
 class POStagger(metaclass=ABCMeta):
 	
 	@abstractmethod
@@ -20,7 +36,7 @@ class POStagger(metaclass=ABCMeta):
 		pass
 
 	@abstractmethod
-	def get_language():
+	def get_language(text):
 		pass
 
 class CandidateGenerator(metaclass=ABCMeta):

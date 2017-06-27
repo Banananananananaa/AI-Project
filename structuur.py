@@ -92,3 +92,22 @@ def main(tweets):
 	
 	keywords = ranker.rank(all_candidates)
 	print keywords
+
+-----------------------------------------------------------------------------------------------
+
+# takes hyperlink, outputs text
+def automatic_summarizer(link):
+    LANGUAGE = "english"
+    SENTENCES_COUNT = 10
+    url = link
+    parser = HtmlParser.from_url(url, Tokenizer(LANGUAGE))
+    stemmer = Stemmer(LANGUAGE)
+    summarizer = Summarizer(stemmer)
+    summarizer.stop_words = get_stop_words(LANGUAGE)
+    text = summarizer(parser.document, SENTENCES_COUNT) 
+    return text
+
+# example usage
+text = automatic_summarizer("https://en.wikipedia.org/wiki/Tf%E2%80%93idf")
+for sentence in text:
+    print(sentence)

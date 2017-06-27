@@ -1,6 +1,16 @@
 import abc
 import re
 import enchant
+import spacy
+import pandas as pd
+import re
+import nltk
+from nltk import wordnet as wn
+from collections import Counter
+from nltk.corpus import wordnet as wn
+from translate import Translator
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class PreProcessor(metaclass=ABCMeta):
 

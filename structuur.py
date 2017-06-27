@@ -93,7 +93,7 @@ def main(tweets):
 	keywords = ranker.rank(all_candidates)
 	print keywords
 
------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
 
 # takes hyperlink, outputs text
 def automatic_summarizer(link):

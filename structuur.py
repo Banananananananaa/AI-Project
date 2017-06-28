@@ -65,18 +65,17 @@ class AutomaticSumerization(preprocessor):
 		summarizer.stop_words = get_stop_words(LANGUAGE)
 		text = summarizer(parser.document, SENTENCES_COUNT) 
 		return text
-		
+class Translator(translation):
+	@classmethod
+	def translate(cls, language1, language2, text):
+		translator = Translator(from_lang=language1, to_lang=language2)
+		return translator.translate(text)		
+
 class SpacyPOStagger(POStagger):
 	@classmethod
 	def tag(cls, text):
 		nlp = spacy.load('nl')
 		text = nlp(text)
-
-class Translator(translation):
-	@classmethod
-	def translate(cls, language1, language2, text):
-		translator = Translator(from_lang=language1, to_lang=language2)
-		return translator.translate(text)
 
 class NltkPOStagger(POStagger):
 	@classmethod

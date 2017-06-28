@@ -1,9 +1,16 @@
+import nltk
 import abc
 import re
 import spacy
-import nltk
-import translator
-	
+import pandas as pd
+import re
+import numpy as np
+from nltk import wordnet as wn
+from collections import Counter
+from nltk.corpus import wordnet as wn
+from translate import Translator
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 class preprocessor():
@@ -106,6 +113,36 @@ class RankedKeywordGenerator(KeyWordGenerator):
 	@classmethod
 	def getkeywords(cls, text):
 		#code
+
+class Select(keywords):
+	@classmethod
+	def select(cls, keywords):
+		labels = []
+		labels[0] = wn.synset('politics.n.01')
+		labels[1] = wn.synset('sport.n.01')
+		labels[2] = wn.synset('food.n.01')
+		labels[3] = wn.synset('party.n.01')
+		labels[4] = wn.synset('academics.n.01')
+		labels[5] = wn.synset('book.n.01')
+		labels[6] = wn.synset('tv.n.01')
+		labels[7] = wn.synset('holiday.n.01')
+		labels[8] = wn.synset('computer.n.01')
+		labels[9] = wn.synset('science.n.01')
+		names = ['politics', 'sports', 'food', 'party', 'academics', 'book', 'tv', 'holiday', 'computer', 'science']
+		length = len(labels)
+		interest = np.zeros(length)
+		for word in keywords:
+			word = word + '.n.01'
+			word = wn.synset(word)
+			for label in labels:
+				interest =+ word.path_similarity(label)
+		classification = []
+		for i in range(0,3)
+			element = max(xrange(len(interest)), key = lambda x: interest[x])
+			classification[i] = names[element]
+			names = np.delete(element, names)
+		return classification
+		#classification process
 		
 		
 def main(tweets, translate):
@@ -130,5 +167,6 @@ def main(tweets, translate):
 		
 	ranked_words = ranker.rank(all_candidates)
 	keywords= keywordgenerator.getkeywords(ranked_words)
-	interest = select(keywords)
-	print interest
+	interests = select.select(keywords)
+	for i in range(len(interests)
+		print interests[i]

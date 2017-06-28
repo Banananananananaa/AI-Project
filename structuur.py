@@ -135,7 +135,6 @@ class Select(keywords):
             keyword = keyword + '.n.01'
             keyword = wn.synset(keyword)
             for label in labels:
-                print(word.path_similarity(label))
                 interest[labels.index(label)] =+ keyword.path_similarity(label)
         classification = []
         for i in range(0,3):

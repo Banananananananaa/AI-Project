@@ -142,7 +142,6 @@ class Select(keywords):
 			classification[i] = names[element]
 			names = np.delete(element, names)
 		return classification
-		#classification process
 		
 		
 def main(tweets, translate):

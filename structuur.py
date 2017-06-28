@@ -117,31 +117,32 @@ class RankedKeywordGenerator(KeyWordGenerator):
 class Select(keywords):
 	@classmethod
 	def select(cls, keywords):
-		labels = []
-		labels[0] = wn.synset('politics.n.01')
-		labels[1] = wn.synset('sport.n.01')
-		labels[2] = wn.synset('food.n.01')
-		labels[3] = wn.synset('party.n.01')
-		labels[4] = wn.synset('academics.n.01')
-		labels[5] = wn.synset('book.n.01')
-		labels[6] = wn.synset('tv.n.01')
-		labels[7] = wn.synset('holiday.n.01')
-		labels[8] = wn.synset('computer.n.01')
-		labels[9] = wn.synset('science.n.01')
-		names = ['politics', 'sports', 'food', 'party', 'academics', 'book', 'tv', 'holiday', 'computer', 'science']
-		length = len(labels)
-		interest = np.zeros(length)
-		for word in keywords:
-			word = word + '.n.01'
-			word = wn.synset(word)
-			for label in labels:
-				interest =+ word.path_similarity(label)
-		classification = []
-		for i in range(0,3)
-			element = max(xrange(len(interest)), key = lambda x: interest[x])
-			classification[i] = names[element]
-			names = np.delete(element, names)
-		return classification
+        labels = []
+        labels.append(wn.synset('politics.n.01'))
+        labels.append(wn.synset('sport.n.01'))
+        labels.append(wn.synset('food.n.01'))
+        labels.append(wn.synset('party.n.01'))
+        labels.append(wn.synset('education.n.01'))
+        labels.append(wn.synset('book.n.01'))
+        labels.append(wn.synset('tv.n.01'))
+        labels.append(wn.synset('holiday.n.01'))
+        labels.append(wn.synset('computer.n.01'))
+        labels.append(wn.synset('science.n.01'))
+        names = ['politics', 'sports', 'food', 'party', 'education', 'book', 'tv', 'holiday', 'computer', 'science']
+        length = len(labels)
+        interest = np.zeros(length)
+        for keyword in keywords:
+            keyword = keyword + '.n.01'
+            keyword = wn.synset(keyword)
+            for label in labels:
+                print(word.path_similarity(label))
+                interest[labels.index(label)] =+ keyword.path_similarity(label)
+        classification = []
+        for i in range(0,3):
+            element = max(xrange(len(interest)), key = lambda x: interest[x])
+            classification.append(names[element])
+            interest[element] = 0
+        return classification
 		
 		
 def main(tweets, translate):

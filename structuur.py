@@ -104,20 +104,20 @@ def main(tweets, translate):
     preprocessors.append(atremoval)
     preprocessors.append(hashtagremoval)
     preprocessors.append(linkremoval)
-	
 	candidate_generator = KeywordCandidateGenerator
 	tokenizer = SpacyPOStagger
 	ranker = TfidfRanker
 	all_candidates = set()
 	translating = Translator
+	
 	if translate == TRUE:
 		translating.translate(cls, language1, language2 tweets)
 	for tweet in tweets:
-		for preprocessor in preproccors:
+		for preprocessor in preprocessors:
 			tweet = preprocessor.preprocess(tweet)
-			candidates = candidate_generator.generate_candidates(tokenizer.tag(tweet))
-			all_candidates += candidates
+		candidates = candidate_generator.generate_candidates(tokenizer.tag(tweet))
+		all_candidates += candidates
 		
 	ranked_words = ranker.rank(all_candidates)
-	keywords = select(ranked_words)
-	print keywords
+	interest = select(ranked_words)
+	print interest

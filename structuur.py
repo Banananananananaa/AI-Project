@@ -32,6 +32,10 @@ class CandidateRanker():
 	def rank(candidates):
 		"""rankes the candidates"""
 
+class KeyWordGenerator():
+	@classmethod
+	def getkeywords(cls, text):
+		"""Gets keywords from the ranked words"""
 		
 		
 		
@@ -88,7 +92,7 @@ class RegexCandidateGenerator(CandidateGenerator):
 	def generate_candidates(cls, tokenized_text):
 		#generate regex keywords
 		
-class KeywordCandidateGenerator(CandidateGenerator):
+class TaggedwordCandidateGenerator(CandidateGenerator):
 	@classmethod
 	def generate_candidates(cls, tokenized_text):
 		#generate keywords with one pos tag
@@ -98,14 +102,21 @@ class TfidfRanker(CandidateRanker):
 	def rank(cls, candidates):
 		#tfidf
 
+class RankedKeywordGenerator(KeyWordGenerator):
+	@classmethod
+	def getkeywords(cls, text):
+		#code
+		
+		
 def main(tweets, translate):
 	preprocessors = []
     preprocessors.append(atremoval)
     preprocessors.append(hashtagremoval)
     preprocessors.append(linkremoval)
-	candidate_generator = KeywordCandidateGenerator
+	candidate_generator = TaggedwordCandidateGenerator
 	tokenizer = SpacyPOStagger
 	ranker = TfidfRanker
+	keywordgenerator = RankedKeywordGenerator
 	all_candidates = set()
 	translating = Translator
 	
@@ -118,5 +129,6 @@ def main(tweets, translate):
 		all_candidates += candidates
 		
 	ranked_words = ranker.rank(all_candidates)
-	interest = select(ranked_words)
+	keywords= keywordgenerator.getkeywords(ranked_words)
+	interest = select(keywords)
 	print interest

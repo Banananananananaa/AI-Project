@@ -1,123 +1,123 @@
 import abc
 import re
-import enchant
 import spacy
-import pandas as pd
-import re
 import nltk
-from nltk import wordnet as wn
-from collections import Counter
-from nltk.corpus import wordnet as wn
-from translate import Translator
-from sklearn.feature_extraction import DictVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-class PreProcessor(metaclass=ABCMeta):
-
-	@abstractmethod
-	def preprocess(text, translate):
-		language = ''
-		if translate == True:
-			text = enchant.Dict("en_US")
-			language = 'en'
-		else:
-			language = 'nl'
-		text = re.findall('\w+', text)
-		text = ' '.join(text)
-		text = unicode(text, "utf-8")
-		return tuple(language, text)
-		
-	def atremoval(text):
-		text = re.sub('@'+'\w+','', text)
-		return text
-
-	def hastagremoval(text):
-		text = re.sub('#'+'\w+','', text)
-		return text	
-		
-	def linkremoval(text):
-		text = re.sub('http'+'\S+', '', text)
-		return text
-		
-class POStagger(metaclass=ABCMeta):
+import translator
 	
-	@abstractmethod
-	def tag(text):
-		pass
-
-	@abstractmethod
-	def get_language(text):
-		pass
-
-class CandidateGenerator(metaclass=ABCMeta):
-
-	@abstractmethod
-	def generate_candidates(tokenized_text):
-		pass
 
 
-class CandidateRanker(metaclass=ABCMeta):
-	
-	@abstractmethod
+class preprocessor():
+    @classmethod
+    def preprocess(cls, text):
+        """removes noise from the tweets"""
+    
+class Translation():
+	@classmethod
+	def translate(cls, language1, language2, text):
+		"""Translates from a language to the desired language if deemed necessary"""
+
+class POStagger():
+	@classmethod
+	def tag(cls, text):
+		"""Assigns tags to each word in the tweet"""
+
+class CandidateGenerator():
+	@classmethod
+	def generate_candidates(cls, tokenized_text):
+		"""generates candidates from the tokens as specified"""
+
+
+class CandidateRanker():
+	@classmethod
 	def rank(candidates):
-		pass
+		"""rankes the candidates"""
 
+		
+		
+		
+class atremoval(preprocessor):
+    @classmethod
+    def preprocess(cls, text):
+        text = re.sub('@'+'\w+', '', text)
+        return text
+
+class hashtagremoval(preprocessor):
+    @classmethod
+    def preprocess(cls, text):
+        text = re.sub('#'+'\w+','', text)
+        return text
+
+class linkremoval(preprocessor):
+    @classmethod
+    def preprocess(cls, text):
+        text = re.sub('http'+'\S+', '', text)
+        return text			
+
+class AutomaticSumerization(preprocessor):
+	@classmethod
+	def preprocess(cls, link):
+		LANGUAGE = "english"
+		SENTENCES_COUNT = 10
+		url = link
+		parser = HtmlParser.from_url(url, Tokenizer(LANGUAGE))
+		stemmer = Stemmer(LANGUAGE)
+		summarizer = Summarizer(stemmer)
+		summarizer.stop_words = get_stop_words(LANGUAGE)
+		text = summarizer(parser.document, SENTENCES_COUNT) 
+		return text
+		
 class SpacyPOStagger(POStagger):
-	
-	def __init__(self, spacy):
-		self.spacy = spacy
+	@classmethod
+	def tag(cls, text):
+		nlp = spacy.load('nl')
+		text = nlp(text)
 
-	def tag(text):
-		return self.spacy.tag(text)
+class Translator(translation):
+	@classmethod
+	def translate(cls, language1, language2, text):
+		translator = Translator(from_lang=language1, to_lang=language2)
+		return translator.translate(text)
 
+class NltkPOStagger(POStagger):
+	@classmethod
+	def tag(cls, text):
+		text = nltk.pos_tag(text)
+		return text
 
-class WordnetPOStagger(POStagger):
-	
-	def __init__(self, wordnet):
-		self.wordnet = wordnet
-
-	def tag(text):
-		return self.spacy.tag(text)
-
-class POStagCandidateGenerator(CandidateGenerator):
-	def __init__(self, pos_tagger):
-		do stuff..
-
+class RegexCandidateGenerator(CandidateGenerator):
+	@classmethod
+	def generate_candidates(cls, tokenized_text):
+		#generate regex keywords
+		
 class KeywordCandidateGenerator(CandidateGenerator):
-	## simple keyword candidate generator
-
-def main(tweets):
-	preprocessors = [remoteGarbishPreprocessor(..), .. ,...]
+	@classmethod
+	def generate_candidates(cls, tokenized_text):
+		#generate keywords with one pos tag
 	
-	candidate_generator = ....
-	tokenizer = ... twokenizer()
+class TfidfRanker(CandidateRanker):
+	@classmethod
+	def rank(cls, candidates):
+		#tfidf
+
+def main(tweets, translate):
+	preprocessors = []
+    preprocessors.append(atremoval)
+    preprocessors.append(hashtagremoval)
+    preprocessors.append(linkremoval)
+	
+	candidate_generator = KeywordCandidateGenerator
+	tokenizer = SpacyPOStagger
+	ranker = TfidfRanker
 	all_candidates = set()
+	translating = Translator
+	if translate == TRUE:
+		translating.translate(cls, language1, language2 tweets)
 	for tweet in tweets:
 		for preprocessor in preproccors:
-			preprocessed_tweet = preprocessor.preprocess(tweet)
-			candidates = candidate_generator.generate(tokenizer.tokenize(preprocessed_tweet))
+			tweet = preprocessor.preprocess(tweet)
+			candidates = candidate_generator.generate_candidates(tokenizer.tag(tweet))
 			all_candidates += candidates
-	
-	ranker = ..
-	
-	keywords = ranker.rank(all_candidates)
+		
+	ranked_words = ranker.rank(all_candidates)
+	keywords = select(ranked_words)
 	print keywords
-
-#-----------------------------------------------------------------------------------------------
-
-# takes hyperlink, outputs text
-def automatic_summarizer(link):
-    LANGUAGE = "english"
-    SENTENCES_COUNT = 10
-    url = link
-    parser = HtmlParser.from_url(url, Tokenizer(LANGUAGE))
-    stemmer = Stemmer(LANGUAGE)
-    summarizer = Summarizer(stemmer)
-    summarizer.stop_words = get_stop_words(LANGUAGE)
-    text = summarizer(parser.document, SENTENCES_COUNT) 
-    return text
-
-# example usage
-text = automatic_summarizer("https://en.wikipedia.org/wiki/Tf%E2%80%93idf")
-for sentence in text:
-    print(sentence)

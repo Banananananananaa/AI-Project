@@ -49,6 +49,7 @@ class POStagger()
 ```
 
 
+
 - __Candidate Generator__
 
 The candidate generator generates candidates from the text.
@@ -97,6 +98,7 @@ class InterestGenerator()
 
 
 - __Dependencies__
+
 For correct working of the program the following packages need to be installed/imported:
 
 - abc

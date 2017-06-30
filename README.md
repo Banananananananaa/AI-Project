@@ -31,7 +31,7 @@ class Translator()
 	class Translate(Translator)
 
 
-
+-
 The part of speech-tagger assigns tags to words.
 Takes list of words as input and gives the tagged words as output.
 
@@ -87,11 +87,11 @@ class InterestGenerator()
 Dependencies
 For correct working of the program the following packages need to be installed/imported:
 
-abc
-re
-spaCy
-from NLTK WordNet
-Pandas
-Numpy
-Translate
-from scikit-learn TfidfVectorizer
+-abc
+-re
+-spaCy
+-from NLTK WordNet
+-Pandas
+-Numpy
+-Translate
+-from scikit-learn TfidfVectorizer

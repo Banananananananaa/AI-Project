@@ -1,3 +1,4 @@
+
 # AI-Project
 Interest Classifier is a Python implementation for retrieving user interests from Twitter massages. 
 Needed by the program is a list of Twitter messages, the output given is the top three interest classes for given user input.
@@ -5,7 +6,7 @@ Needed by the program is a list of Twitter messages, the output given is the top
 __General outline of the classes__:
 
 The preprocessor takes the tweet strings as input, and returns a list of processed words.
-
+'''
 class Preprocessor()
 	Remove all occuerences of @ in a tweet using regular expression comparision
 	class atremoval(Preprocessor)
@@ -21,7 +22,7 @@ class Preprocessor()
 
 	Remove all other punctuations and return list containing only strings of words
 	findall(Preprocessor)
-
+'''
 
 
 The translator takes as input a text and outputs the translated text.

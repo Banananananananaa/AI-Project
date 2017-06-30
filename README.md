@@ -45,7 +45,7 @@ class POStagger()
 
 
 The candidate generator generates candidates from the text.
-Takes as input, a list of tagged words and gives a list of chosen words(nouns, verb, adjectives and adverbs) as output.
+ Takes as input, a list of tagged words and gives a list of chosen words(nouns, verb, adjectives and adverbs) as output.
 
 class CandidateGenerator()
 	Get the words with the tag noun, verb, adjective or adverb from tagged words
@@ -87,11 +87,11 @@ class InterestGenerator()
 Dependencies
 For correct working of the program the following packages need to be installed/imported:
 
--abc
--re
--spaCy
--from NLTK WordNet
--Pandas
--Numpy
--Translate
--from scikit-learn TfidfVectorizer
+- abc
+- re
+- spaCy
+- from NLTK WordNet
+- Pandas
+- Numpy
+- Translate
+- from scikit-learn TfidfVectorizer

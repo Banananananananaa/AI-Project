@@ -8,6 +8,8 @@ __General outline of the classes__:
 
 The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc. 
 ```
+__The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc.__
+
 class Preprocessor()
 	Remove all occurrences of '@' in a tweet using regular expression comparison
 	class atremoval(Preprocessor)

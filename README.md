@@ -5,7 +5,7 @@ Needed by the program is a list of Twitter messages, the output given is the top
 
 - __Preprocessor__
 
-The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc. 
+The preprocessor takes the Twitter messages as input in the form of a string and returns a list of processed words, without noise such as punctuation smileys etc. 
 ```
 class Preprocessor()
 	Remove all occurrences of '@' in a tweet using regular expression comparison
@@ -41,10 +41,10 @@ The part of speech-tagger assigns tags to words.
 Takes a list of words as input and gives the corresponding tagged words as output.
 ```
 class POStagger()
-	Use the spaCy natural language processor to tag the words(dutch package)
+	Use the spaCy natural language processor to tag the words (dutch)
 	class SpacyPOStagger(POStagger)
 
-	Use the NLTK natural language toolkit to tag the words(english)
+	Use the NLTK natural language toolkit to tag the words (english)
 	class NltkPOStagger(POStagger)
 ```
 
@@ -52,8 +52,8 @@ class POStagger()
 
 - __Candidate Generator__
 
-The candidate generator generates candidates from the text.
-Takes as input, a list of tagged words and gives a list of chosen words(nouns, verb, adjectives and adverbs) as output.
+The candidate generator generates candidates from text.
+Takes as input a list of tagged words and gives a list of chosen words(nouns, verb, adjectives and adverbs) as output.
 ```
 class CandidateGenerator()
 	Get the words with the tag noun, verb, adjective or adverb from tagged words

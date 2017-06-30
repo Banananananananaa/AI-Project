@@ -2,6 +2,7 @@
 Interest Classifier is a Python implementation for retrieving user interests from Twitter messages. 
 Needed by the program is a list of Twitter messages, the output given is the top three interest classes for given user input.
 
+
 - __Preprocessor__
 
 The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc. 
@@ -23,6 +24,7 @@ _	class atremoval(Preprocessor)
 	findall(Preprocessor)
 ```
 
+
 - __Translator__
 
 The translator takes as input a text and outputs the translated text.
@@ -31,6 +33,7 @@ _class Translator()
 	Use the translator provided in the translate package
 	class Translate(Translator)
 ```
+
 
 - __POS-Tagger__
 
@@ -45,6 +48,7 @@ class POStagger()
 	class NltkPOStagger(POStagger)
 ```
 
+
 - __Candidate Generator__
 
 The candidate generator generates candidates from the text.
@@ -58,6 +62,7 @@ class CandidateGenerator()
 	class RegexCandidateGenerator(CandidateGenerator)
 ```
 
+
 - __Candidate Ranker__
 
 The candidate ranker assigns ranks to the generated candidates.
@@ -68,6 +73,7 @@ class CandidateRanker()
 	class TfidfRanker(CandidateRanker)
 ```
 
+
 - __Keyword Generator__
 
 The keyword generator generates keywords from the ranked words.
@@ -77,6 +83,7 @@ class KeyWordGenerator()
 	Select highest scoring word from tweet based on TF-IDF scores
 	class RankedKeywordGenerator(KeyWordGenerator)
 ```
+
 
 - __Interest Generator__
 

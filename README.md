@@ -29,7 +29,7 @@ _	class atremoval(Preprocessor)
 
 The translator takes as input a text and outputs the translated text.
 ```
-_class Translator()
+class Translator()
 	Use the translator provided in the translate package
 	class Translate(Translator)
 ```

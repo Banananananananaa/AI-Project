@@ -8,7 +8,7 @@ The preprocessor takes the Twitter messages asas input in the form of a strings 
 ```
 class Preprocessor()
 	Remove all occurrences of '@' in a tweet using regular expression comparison
-	class atremoval(Preprocessor)
+_	class atremoval(Preprocessor)
 
 	Remove all occurrences of '#' in a tweet using regular expression comparison
 	class hashtagremoval(Preprocessor)
@@ -23,17 +23,16 @@ class Preprocessor()
 	findall(Preprocessor)
 ```
 
-- Translator
+- __Translator__
 
 The translator takes as input a text and outputs the translated text.
 ```
-
-class Translator()
+_class Translator()
 	Use the translator provided in the translate package
 	class Translate(Translator)
 ```
 
-- POS-Tagger
+- __POS-Tagger__
 
 The part of speech-tagger assigns tags to words.
 Takes a list of words as input and gives the corresponding tagged words as output.
@@ -46,7 +45,7 @@ class POStagger()
 	class NltkPOStagger(POStagger)
 ```
 
-- Candidate Generator
+- __Candidate Generator__
 
 The candidate generator generates candidates from the text.
 Takes as input, a list of tagged words and gives a list of chosen words(nouns, verb, adjectives and adverbs) as output.
@@ -59,7 +58,7 @@ class CandidateGenerator()
 	class RegexCandidateGenerator(CandidateGenerator)
 ```
 
-- Candidate Ranker
+- __Candidate Ranker__
 
 The candidate ranker assigns ranks to the generated candidates.
 Takes a list of candidates and returns the words together with a rank.
@@ -69,7 +68,7 @@ class CandidateRanker()
 	class TfidfRanker(CandidateRanker)
 ```
 
-- Keyword Generator
+- __Keyword Generator__
 
 The keyword generator generates keywords from the ranked words.
 Takes a list of words with ranks as input and returns the selected keywords in a list as output.
@@ -79,7 +78,7 @@ class KeyWordGenerator()
 	class RankedKeywordGenerator(KeyWordGenerator)
 ```
 
-- Interest Generator
+- __Interest Generator__
 
 The interest generator selects interests based on the keywords.
 Takes a list of keywords as input and returns a list of interests as output
@@ -90,7 +89,7 @@ class InterestGenerator()
 ```
 
 
-Dependencies
+- __Dependencies__
 For correct working of the program the following packages need to be installed/imported:
 
 - abc

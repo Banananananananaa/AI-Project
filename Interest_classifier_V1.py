@@ -104,7 +104,7 @@ class linkremoval(preprocessor):
 class AutomaticSumerization(preprocessor):
     @classmethod
     def preprocess(cls, text):
-		link = re.findall('http'+'\S+', text)
+        link = re.findall('http'+'\S+', text)
         LANGUAGE = "english"
         SENTENCES_COUNT = 10
         url = link

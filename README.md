@@ -2,7 +2,7 @@
 Interest Classifier is a Python implementation for retrieving user interests from Twitter massages. 
 Needed by the program is a list of Twitter messages, the output given is the top three interest classes for given user input.
 
-__General_outline_of_the_classes__:
+__General outline of the classes__:
 
 The preprocessor takes the tweet strings as input, and returns a list of processed words.
 

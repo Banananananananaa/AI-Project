@@ -1,26 +1,26 @@
 
 # AI-Project
-Interest Classifier is a Python implementation for retrieving user interests from Twitter massages. 
+Interest Classifier is a Python implementation for retrieving user interests from Twitter messages. 
 Needed by the program is a list of Twitter messages, the output given is the top three interest classes for given user input.
 
 __General outline of the classes__:
 
-The preprocessor takes the tweet strings as input, and returns a list of processed words.
+The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc. 
 ```
 class Preprocessor()
-	Remove all occuerences of @ in a tweet using regular expression comparision
+	Remove all occurrences of '@' in a tweet using regular expression comparison
 	class atremoval(Preprocessor)
 
-	Remove all occuerences of # in a tweet using regular expression comparision
+	Remove all occurrences of '#' in a tweet using regular expression comparison
 	class hashtagremoval(Preprocessor)
 
-	Remove all hyperlinks in a tweet using regular expression comparision
+	Remove all hyperlinks in a tweet using regular expression comparison
 	class linkremoval(Preprocessor)
 
-	If available, retrun a summerization of the hyperlink containing keywoord of summerized hyperlink
+	If available, return a summerization of the hyperlink containing the most significant keywords of the hyperlink
 	class AutomaticSumerization(Preprocessor)
 
-	Remove all other punctuations and return list containing only strings of words
+	Remove all other punctuation marks and return a list containing only strings of words
 	findall(Preprocessor)
 ```
 

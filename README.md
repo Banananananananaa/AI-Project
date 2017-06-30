@@ -2,14 +2,10 @@
 Interest Classifier is a Python implementation for retrieving user interests from Twitter messages. 
 Needed by the program is a list of Twitter messages, the output given is the top three interest classes for given user input.
 
-__General outline of the classes__:
-
-- Preprocessor
+- __Preprocessor__
 
 The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc. 
 ```
-__The preprocessor takes the Twitter messages asas input in the form of a strings and returns a list of processed words, without noise such as punctuation smileys etc.__
-
 class Preprocessor()
 	Remove all occurrences of '@' in a tweet using regular expression comparison
 	class atremoval(Preprocessor)
@@ -31,6 +27,7 @@ class Preprocessor()
 
 The translator takes as input a text and outputs the translated text.
 ```
+
 class Translator()
 	Use the translator provided in the translate package
 	class Translate(Translator)
